@@ -1,0 +1,103 @@
+﻿@model GoPhysicist.Models.GameOfLife.GameOfLife
+@{
+    ViewBag.Title = "GameOfLife";
+}
+
+<div class="col-md-12">
+    <div class="form-row">
+        <h2>Game Of Life</h2>
+    </div>
+    <div class="row">
+        <div class="col-md-6" id="gridDiv">
+            @*<div id="gridBox">Tu będzie siatka</div>*@
+
+            <table style="width:100%; height:100%" id="gridBox"></table>
+        </div>
+        <div class="col-md-6 pl-4" id="test">
+
+            <div class="row">
+                Choose size of your game of life:
+            </div>
+            <div class="row pt-2">
+                <div class="col-md-2 col-form-label">
+                    @Html.LabelFor(m => m.HeightNumber)
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.HeightNumber, new { @class = "form-control gridTableSize" })
+                </div>
+
+                <div class="col-md-2 col-form-label">
+                    @Html.LabelFor(m => m.WidthNumber)
+                </div>
+                <div class="col-md-2">
+                    @Html.TextBoxFor(m => m.WidthNumber, new { @class = "form-control gridTableSize" })
+                </div>
+                <div class="col-md-4 justify-content-end">
+                    @*<button id="create-grid-btn" class="btn btn-light" onclick="gameOfLife.createGridTable()">OK!</button>*@
+                </div>
+            </div>
+            <div class="row pt-4">
+                Choose rules of your game of life:
+            </div>
+            <div class="row pt-2" id="rules-div">
+                <div class="col-md-6">
+                    <div class="row">
+                        Rules of staying alive:
+                    </div>
+                    <div id="live-rules-div" class="row pl-2 pr-2 text-center">
+                        <table id="alive-rules"></table>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="row">
+                        Rules of getting born:
+                    </div>
+                    <div id="born-rules-div" class="row pl-2 pr-2 text-center">
+                        <table id="born-rules"></table>
+                    </div>
+                </div>
+            </div>
+            <div class="row pt-4">
+
+                    <div class="col-md-12">
+                        <button id="step-btn" class="btn btn-outline-light" onclick="gameOfLife.takeAStep();">Take a step!</button>
+                    </div>
+            </div>
+
+                @*<div class="col-md-4">
+                    <button id="test-btn" class="btn btn-light" onclick="gameOfLife.createArrayFromTable()">TEST ME!</button>
+                </div>*@
+            <div class="row pt-2">
+                <div class="col-md-2">@Html.Label("Start life!") </div>
+                <div class="col-md-2">@Html.CheckBox("start life", new { @id = "start", @class = "new-checkbox" })</div>
+                <div class="col-md-2">@Html.TextBox("test2", new { @class = "form-control", @id = "test2" })</div>
+
+            </div>
+            <div class="row pt-4">
+                @Html.TextArea("test", new { @id = "testDisplay" })
+
+                @Html.TextArea("emptyArray", new { @id = "emptyArray" })
+                @Html.TextBoxFor(m=>m.PixelArray)
+            </div>
+            <div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/js")
+
+
+<script>
+
+    gameOfLife.init();
+    $(".gridTableSize").change(function () { gameOfLife.setTableSize(); gameOfLife.createGridTable() });
+    $("#start").change(function () { gameOfLife.startLife(); });
+    $("#test2").change(function () { gameOfLife.goToTypedStep(); })
+
+</script>

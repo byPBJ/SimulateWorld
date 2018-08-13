@@ -1,0 +1,46 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg my-3 navbar-dark bg-primary  sticky-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Simulate the World", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse  text-center justify-content-end" id="navbarPrimarySupportedContent">
+                <ul class="nav navbar-nav">
+                    <li><span class="nav-item px-2 btn navbar-btn">@Html.ActionLink("Home", "Index", "Home")</span></li>
+                    <li><span class="nav-item px-2 btn navbar-btn">@Html.ActionLink("About", "About", "Home")</span></li>
+                    <li><span class="nav-item px-2 btn navbar-btn">@Html.ActionLink("Contact", "Contact", "Home")</span></li>
+                    <li><span class="nav-item px-2 btn navbar-btn">@Html.ActionLink("Game of life", "GameOfLife", "Game")</span></li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; Today is @DateTime.Now.DayOfWeek - the best day to start learning physics!</p>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/js")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
